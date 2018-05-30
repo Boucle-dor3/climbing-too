@@ -5,8 +5,10 @@
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            crossorigin="anonymous"></script>
 </head>
 
 
@@ -14,7 +16,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Climbing-too</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -27,7 +30,8 @@
                 <a class="nav-link" href="#">Topos</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Les sites d'escalade
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -49,83 +53,25 @@
 
 </nav>
 
+<h1 class="d-flex justify-content-center mt-3 mb-5">Liste des Topos falaises</h1>
+
 <div class="container">
-<h1 class="d-flex justify-content-center">Liste des Topos falaises</h1>
-
-<div class="card-deck">
-    <div class="card">
-        <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" class="btn btn-dark">Go somewhere</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-dark">Go somewhere</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title"> Card title</h5>
-            <p class="card-text" >This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <a href="#" class="btn btn-dark">Go somewhere</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-
-        <div class="card-deck">
+    <div class="d-flex flex-wrap  text-center">
+        <div class="col-sm-4 mb-4" th:each="topo : ${topos}">
             <div class="card">
                 <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <a href="#" class="btn btn-dark">Go somewhere</a>
+                    <h5 class="card-title" th:text="${topo.getTitle()}"></h5>
+                    <p class="card-text" th:text="${topo.getDescription()}"></p>
+                    <a href="#" class="btn btn-dark">En savoir plus</a>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-dark">Go somewhere</a>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title" th:each="topo : ${topos}" th:text="${topo.getTitle()}"> Card title</h5>
-                    <p class="card-text" >This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    <a href="#" class="btn btn-dark">Go somewhere</a>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+        </div>
     </div>
 </div>
 
-
-<ul>
-    <li th:each="topo : ${topos}" th:text="${topo.getTitle() + ' ' + topo.getDescription()}"></li>
-</ul>
 </body>
 </html>
