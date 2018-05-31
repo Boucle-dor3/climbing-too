@@ -36,4 +36,9 @@ public class TopoController {
         topoRepository.save(topo);
         return "created";
     }
+
+    @GetMapping("/createtopoform")
+    public String createTopoForm() {
+        return "createtopoform";
+    }
 }
