@@ -39,8 +39,7 @@ public class TopoController {
 
     @GetMapping("/createtopoform")
     public String createTopoForm(Model model) {
-        Topo topo = new Topo();
-        model.addAttribute("topo", new Topo());
+        model.addAttribute("topoForm", new TopoForm());
         return "createtopoform";
     }
 
