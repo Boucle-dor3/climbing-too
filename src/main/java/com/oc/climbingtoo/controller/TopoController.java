@@ -1,6 +1,7 @@
 package com.oc.climbingtoo.controller;
 
 
+import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class TopoController {
     }
 
     @PostMapping("/createtopoform")
-    public String topoSubmit(@ModelAttribute Topo topo) {
-        return "createtopoform";
+    public String topoSubmit(@ModelAttribute TopoForm topoForm) {
+        return "redirect:/";
     }
 }
