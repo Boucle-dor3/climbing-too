@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Climbing Too</title>
@@ -13,24 +14,48 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 class="d-flex justify-content-center m-3">Formulaire de création de topos</h1>
 
-<form  action="">
-<div class="input-group d-flex justify-content-center m-5 ">
-   <div class="row">
-    <div class="custom-file m-5">
-        <input type="file" class="custom-file-input" id="customFile">
-        <label class="custom-file-label" for="customFile"></label>
-    </div>
 
-    <select class="custom-select custom-select-sm m-5">
-        <option selected>Liste des topos</option>
-        <option value="1">Topo sur les falaises</option>
-        <option value="2">Topo sur les blocs</option>
-    </select>
+<div class="container ">
+    <h1 class=" col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de topos</h1>
 
+    <form action="#" method="post" th:action="@{/createtopoform}" th:object="${topo}">
+        <div class="form-group">
+            <div class="row ">
+                <div class="form-group col-md-5 offset-md-4 mt-5 mb-5">
+                    <label for="exampleFormControlFile1"></label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+            </div>
+            <div class="row ">
+                <select class="custom-select custom-select-sm col-md-3 offset-md-4 mb-5">
+                    <option selected>Liste des topos</option>
+                    <option value="1">Topo sur les falaises</option>
+                    <option value="2">Topo sur les blocs</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlInput1" >Titre du Topo</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                           placeholder="la ville du topo" th:field="*{title}">
+                </div>
+            </div>
+            <div class="row ">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlTextarea1" >Description du topo</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{description}" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto col-md-3 offset-md-6">
+                    <button type="submit" class="btn btn-dark mb-2">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
 </div>
-</div>
-</form>
 </body>
 </html>
+

@@ -8,22 +8,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.swing.text.AbstractDocument;
 import java.util.List;
 
 @Controller
 public class TopoController {
 
     @Autowired
-    TopoRepository topoRepository;
-
-    @Value("${spring.application.name}")
-    String appName;
+    private TopoRepository topoRepository;
 
     @GetMapping("/")
     public String homePage(Model model) {
         List<Topo> topos = topoRepository.findAll();
-        model.addAttribute("appName", appName);
         model.addAttribute("topos", topos);
         return "home";
     }
@@ -38,7 +37,14 @@ public class TopoController {
     }
 
     @GetMapping("/createtopoform")
-    public String createTopoForm() {
+    public String createTopoForm(Model model) {
+        Topo topo = new Topo();
+        model.addAttribute("topo", new Topo());
+        return "createtopoform";
+    }
+
+    @PostMapping("/createtopoform")
+    public String topoSubmit(@ModelAttribute Topo topo) {
         return "createtopoform";
     }
 }
