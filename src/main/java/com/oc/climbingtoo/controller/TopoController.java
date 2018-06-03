@@ -4,15 +4,16 @@ package com.oc.climbingtoo.controller;
 import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.swing.text.AbstractDocument;
 import java.util.List;
 
 @Controller
@@ -28,14 +29,6 @@ public class TopoController {
         return "home";
     }
 
-    @GetMapping("/create")
-    public String createTopo() {
-        Topo topo = new Topo();
-        topo.setTitle("Ablon");
-        topo.setDescription("Description");
-        topoRepository.save(topo);
-        return "created";
-    }
 
     @GetMapping("/createtopoform")
     public String createTopoForm(Model model) {
@@ -45,6 +38,18 @@ public class TopoController {
 
     @PostMapping("/createtopoform")
     public String topoSubmit(@ModelAttribute TopoForm topoForm) {
+        topoRepository.save(topoForm.toTopo());
         return "redirect:/";
     }
+
+
+    @EventListener
+    public void appReady(ApplicationReadyEvent event) {
+        Topo topo = new Topo();
+        topo.setTitle("Ablon");
+        topo.setDescription("La falaise est magnifique.");
+        topoRepository.save(topo);
+    }
+
+
 }
