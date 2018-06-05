@@ -3,6 +3,7 @@ package com.oc.climbingtoo.controller;
 
 import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
+import com.oc.climbingtoo.enumeration.TopoType;
 import com.oc.climbingtoo.repository.TopoRepository;
 import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.List;
 
 @Controller
