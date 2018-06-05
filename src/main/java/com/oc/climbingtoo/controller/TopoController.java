@@ -3,27 +3,35 @@ package com.oc.climbingtoo.controller;
 
 import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
-import com.oc.climbingtoo.enumeration.TopoType;
 import com.oc.climbingtoo.repository.TopoRepository;
-import javafx.application.Application;
+import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+
 import java.util.List;
+
 
 @Controller
 public class TopoController {
 
     @Autowired
+    private StorageService storageService;
+
+    @Autowired
     private TopoRepository topoRepository;
+
+    public TopoController(StorageService storageService) {
+        this.storageService = storageService;
+    }
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -40,9 +48,27 @@ public class TopoController {
     }
 
     @PostMapping("/createtopoform")
-    public String topoSubmit(@ModelAttribute TopoForm topoForm) {
-        topoRepository.save(topoForm.toTopo());
+    public String topoSubmit(@ModelAttribute TopoForm topoForm, @RequestParam("file") MultipartFile file) {
+        Topo topo = topoForm.toTopo();
+        try {
+            storageService.store(file);
+            System.out.println(file.getOriginalFilename());
+            topo.setPicture(file.getOriginalFilename());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+        topoRepository.save(topo);
         return "redirect:/";
+    }
+
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+        Resource file = storageService.loadFile(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .body(file);
     }
 
 

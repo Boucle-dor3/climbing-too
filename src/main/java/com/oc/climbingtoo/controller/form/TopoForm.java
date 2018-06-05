@@ -15,16 +15,12 @@ public class TopoForm {
     private String description;
 
     @Getter @Setter
-    private String picture;
-
-    @Getter @Setter
     private TopoType type;
 
     public Topo toTopo() {
         Topo topo = new Topo();
         topo.setTitle(this.getTitle());
         topo.setDescription(this.getDescription());
-        topo.setPicture(this.getPicture());
         topo.setType(this.getType());
         return topo;
     }

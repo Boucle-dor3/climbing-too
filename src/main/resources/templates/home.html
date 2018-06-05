@@ -64,7 +64,8 @@
     <div class="d-flex flex-wrap  text-center">
         <div class="col-sm-4 mb-4" th:each="topo : ${topos}">
             <div class="card">
-                <img class="card-img-top" src="/images/falaise-escalade.jpg" alt="Card image cap">
+                <img class="card-img-top" th:src="${'files/'+topo.getPicture()}" th:if="${topo.getPicture() != null}" alt="Card image cap">
+                <img class="card-img-top" src="images/falaise-escalade.jpg" th:if="${topo.getPicture() == null}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${topo.getTitle()}"></h5>
                     <p th:text="${topo.getType()}"></p>
