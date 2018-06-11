@@ -5,6 +5,7 @@ import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -51,11 +52,8 @@ public class TopoController {
     public String topoSubmit(@ModelAttribute TopoForm topoForm, @RequestParam("file") MultipartFile file) {
         Topo topo = topoForm.toTopo();
         try {
-            storageService.store(file);
-            System.out.println(file.getOriginalFilename());
-            topo.setPicture(file.getOriginalFilename());
+            topo.setPicture(storageService.store(file));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw e;
         }
         topoRepository.save(topo);
