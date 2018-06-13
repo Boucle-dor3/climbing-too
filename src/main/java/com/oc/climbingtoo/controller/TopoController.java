@@ -3,6 +3,7 @@ package com.oc.climbingtoo.controller;
 
 import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
+import com.oc.climbingtoo.exception.InvalidFileExtensionException;
 import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -42,7 +44,10 @@ public class TopoController {
 
 
     @GetMapping("/createtopoform")
-    public String createTopoForm(Model model) {
+    public String createTopoForm(Model model, @RequestParam(value="error", required=false) String error) {
+        if ("invalid-extension".equals(error)) {
+            model.addAttribute("error", "L'extension est invalide.");
+        }
         model.addAttribute("topoForm", new TopoForm());
         return "createtopoform";
     }
@@ -52,8 +57,10 @@ public class TopoController {
         Topo topo = topoForm.toTopo();
         try {
             topo.setPicture(storageService.store(file));
-        } catch (Exception e) {
-            throw e;
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot import image");
+        } catch (InvalidFileExtensionException e) {
+            return "redirect:/createtopoform?error=invalid-extension";
         }
         topoRepository.save(topo);
         return "redirect:/";

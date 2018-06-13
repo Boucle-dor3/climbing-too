@@ -20,6 +20,7 @@
     <h1 class=" col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de topos</h1>
 
     <form action="#" method="post" th:action="@{/createtopoform}" th:object="${topoForm}" enctype="multipart/form-data">
+        <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
         <div class="form-group">
             <div class="row ">
                 <div class="form-group col-md-5 offset-md-4 mt-5 mb-5">
