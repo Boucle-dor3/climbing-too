@@ -5,7 +5,6 @@ import com.oc.climbingtoo.controller.form.TopoForm;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
