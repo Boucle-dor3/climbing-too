@@ -84,5 +84,9 @@ public class TopoController {
         topoRepository.save(topo);
     }
 
+    @GetMapping("/sitepage")
+    public String sitePage () {
+        return "sitepage";
+    }
 
 }
