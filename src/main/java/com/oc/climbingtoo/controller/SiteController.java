@@ -1,10 +1,10 @@
 package com.oc.climbingtoo.controller;
 
 
-import com.oc.climbingtoo.controller.form.TopoForm;
-import com.oc.climbingtoo.entity.Topo;
+import com.oc.climbingtoo.controller.form.SiteForm;
+import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.exception.InvalidFileExtensionException;
-import com.oc.climbingtoo.repository.TopoRepository;
+import com.oc.climbingtoo.repository.SiteRepository;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -23,22 +23,22 @@ import java.util.List;
 
 
 @Controller
-public class TopoController {
+public class SiteController {
 
     @Autowired
     private StorageService storageService;
 
     @Autowired
-    private TopoRepository topoRepository;
+    private SiteRepository siteRepository;
 
-    public TopoController(StorageService storageService) {
+    public SiteController(StorageService storageService) {
         this.storageService = storageService;
     }
 
     @GetMapping("/")
     public String homePage(Model model) {
-        List<Topo> topos = topoRepository.findAll();
-        model.addAttribute("topos", topos);
+        List<Site> site = siteRepository.findAll();
+        model.addAttribute("sites", site)   ;
         return "home";
     }
 
@@ -48,21 +48,21 @@ public class TopoController {
         if ("invalid-extension".equals(error)) {
             model.addAttribute("error", "L'extension est invalide.");
         }
-        model.addAttribute("topoForm", new TopoForm());
+        model.addAttribute("topoForm", new SiteForm());
         return "createtopoform";
     }
 
     @PostMapping("/createtopoform")
-    public String topoSubmit(@ModelAttribute TopoForm topoForm, @RequestParam("file") MultipartFile file) {
-        Topo topo = topoForm.toTopo();
+    public String topoSubmit(@ModelAttribute SiteForm siteForm, @RequestParam("file") MultipartFile file) {
+        Site site = siteForm.toSite();
         try {
-            topo.setPicture(storageService.store(file));
+            site.setPicture(storageService.store(file));
         } catch (IOException e) {
             throw new RuntimeException("Cannot import image");
         } catch (InvalidFileExtensionException e) {
             return "redirect:/createtopoform?error=invalid-extension";
         }
-        topoRepository.save(topo);
+        siteRepository.save(site);
         return "redirect:/";
     }
 
@@ -78,10 +78,10 @@ public class TopoController {
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
-        Topo topo = new Topo();
-        topo.setTitle("Ablon");
-        topo.setDescription("La falaise est magnifique.");
-        topoRepository.save(topo);
+        Site site = new Site();
+        site.setTitle("Ablon");
+        site.setDescription("La falaise est magnifique.");
+        siteRepository.save(site);
     }
 
     @GetMapping("/sitepage")

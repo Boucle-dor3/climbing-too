@@ -1,6 +1,6 @@
 package com.oc.climbingtoo.entity;
 
-import com.oc.climbingtoo.enumeration.TopoType;
+import com.oc.climbingtoo.enumeration.SiteType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Topo {
+public class Site {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Getter
@@ -29,7 +29,7 @@ public class Topo {
 
     @Enumerated(EnumType.STRING)
     @Getter @Setter
-    private TopoType type;
+    private SiteType type;
 
 
 }

@@ -1,6 +1,6 @@
 package com.oc.climbingtoo.enumeration;
 
-public enum TopoType {
+public enum SiteType {
     FALAISES,
     BLOCS
 }
