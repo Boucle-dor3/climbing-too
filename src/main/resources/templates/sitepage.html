@@ -1,7 +1,7 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="fr">
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Climbing-too</title>
@@ -17,10 +17,10 @@
 
 <body>
 <div class="row">
-    <p class="h1 col-md-6 offset-md-5 mt-3 mb-3"> Ablon</p>
+    <p class="h1 col-md-6 offset-md-5 mt-3 mb-3" th:text="${site.getSiteName()}"></p>
 </div>
 
-<img src="falaise-escalade.jpg" class="img-fluid col-md-5 offset-md-3 mt-3 mb-5" alt="Responsive image">
+<img src="/images/falaise-escalade.jpg" class="img-fluid col-md-5 offset-md-3 mt-3 mb-5" alt="Responsive image">
 
 <table class="table ">
     <thead>
@@ -48,17 +48,8 @@
 
 <div class="col-md-10 offset-md-1 mt-5 mb-5">
 <div>
-<h2>Ablon</h2>
-<p>
-    Ablon, c’est la falaise d’alpages, nichée à l’écart, dans un recoin sauvage et préservé en plein cœur du massif des Bornes.
-    On est loin de la montagne à touristes, il n’y a plus aucun bruit de moteur...
-    Là, sur le plateau des Glières, lieu célèbre pour la page d’histoire qui s’y est écrite au cours de la dernière guerre mondiale,
-    où les résistants ont fui les occupants allemands, se trouve le Val d’Ablon,
-    un joyau de falaise haut-savoyard encore inconnu il y a une vingtaine d’années. Sur ses fantastiques dalles grises très sculptées,
-    où le rocher est beau partout, l’escalade présente une variété de styles avec prédominance de grandes envolées en 6b, 6c ou 7a,
-    tout en continuité. On doit plus des deux tiers de ces fabuleuses lignes à Robert Durieux, équipeur motivé et amoureux des lieux depuis au moins trente ans.
-    Autre atout de poids : le pied des voies s’ancre dans un alpage ombragé, moelleux et confortable, idéal pour un assurage serein ou des bambins remuants.
-    Ablon, c’est le site majeur de Haute Savoie pour le cadre, la qualité des lignes et du rocher. Ambiance épicéas, oxygène, clarines et reblochon !
+<h2 th:text="${site.getSiteName()}"></h2>
+<p th:text="${site.getDescription()}">
 </p>
 </div>
 
@@ -87,7 +78,7 @@
 </div>
 
 <div class="media">
-    <img class="align-self-start  col-md-1 offset-md-1 mt-3 mb-5" src="images/falaise-escalade.jpg" alt="Generic placeholder image">
+    <img class="align-self-start  col-md-1 offset-md-1 mt-3 mb-5" src="/images/falaise-escalade.jpg" alt="Generic placeholder image">
     <div class="media-body">
         <h5 class="mt-4">Topos</h5>
         <p>40 Falaises - Escalade choisie aux environs du lac d’Annecy - R. Durieux, 2007.</p>
@@ -116,7 +107,7 @@
     <h4 class="m-5">Laissez un commentaire</h4>
     <div class="row">
         <div class="col-md-1">
-            <img src="images/user1.png" class="img-fluid" alt="...">
+            <img src="/images/user1.png" class="img-fluid" alt="...">
         </div>
         <div class="form-group col-md-9 ">
             <textarea class="form-control" placeholder="Ajoutez un commentaire"></textarea>

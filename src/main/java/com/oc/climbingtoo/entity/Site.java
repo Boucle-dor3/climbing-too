@@ -6,9 +6,7 @@ import lombok.Setter;
 
 
 import javax.persistence.*;
-
-
-
+import java.util.Date;
 
 
 @Entity
@@ -19,8 +17,9 @@ public class Site {
     private Integer id;
 
     @Getter @Setter
-    private String title;
+    private String siteName;
 
+    @Column(name="DESC", columnDefinition="TEXT")
     @Getter @Setter
     private String description;
 
@@ -31,6 +30,17 @@ public class Site {
     @Getter @Setter
     private SiteType type;
 
+    @Getter @Setter
+    private String region;
+
+    @Getter @Setter
+    private String department;
+
+    @Getter @Setter
+    private Date createdAt;
+
+    @Getter @Setter
+    private Date updatedAt;
 
 }
 

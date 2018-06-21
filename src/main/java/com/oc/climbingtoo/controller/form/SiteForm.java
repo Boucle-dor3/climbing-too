@@ -9,7 +9,7 @@ import lombok.Setter;
 public class SiteForm {
 
     @Getter @Setter
-    private String title;
+    private String siteName;
 
     @Getter @Setter
     private String description;
@@ -19,7 +19,7 @@ public class SiteForm {
 
     public Site toSite() {
         Site site = new Site();
-        site.setTitle(this.getTitle());
+        site.setSiteName(this.getSiteName());
         site.setDescription(this.getDescription());
         site.setType(this.getType());
         return site;

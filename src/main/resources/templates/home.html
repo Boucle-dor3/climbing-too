@@ -57,19 +57,19 @@
 </nav>
 
 
-<h1 class=" col-md-7 offset-md-4 mt-3 mb-5">Liste des Topos falaises</h1>
+<h1 class=" col-md-7 offset-md-4 mt-3 mb-5">Liste des Topos</h1>
 
 
 <div class="container">
     <div class="d-flex flex-wrap  text-center">
-        <div class="col-sm-4 mb-4" th:each="topo : ${topos}">
+        <div class="col-sm-4 mb-4" th:each="site : ${sites}">
             <div class="card">
-                <img class="card-img-top" th:src="${'files/'+topo.getPicture()}" th:if="${topo.getPicture() != null}" alt="Card image cap">
-                <img class="card-img-top" src="images/falaise-escalade.jpg" th:if="${topo.getPicture() == null}" alt="Card image cap">
+                <img class="card-img-top" th:src="${'files/'+site.getPicture()}" th:if="${site.getPicture() != null}" alt="Card image cap">
+                <img class="card-img-top" src="/images/falaise-escalade.jpg" th:if="${site.getPicture() == null}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${topo.getTitle()}"></h5>
-                    <p th:text="${topo.getType()}"></p>
-                    <p class="card-text" th:text="${topo.getDescription()}"></p>
+                    <h5 class="card-title" th:text="${site.getSiteName()}"></h5>
+                    <p th:text="${site.getType()}"></p>
+                    <p class="card-text" th:text="${site.getDescription()}"></p>
                     <a href="/sitepage" class="btn btn-dark" >En savoir plus</a>
                 </div>
                 <div class="card-footer">

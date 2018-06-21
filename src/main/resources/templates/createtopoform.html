@@ -19,7 +19,7 @@
 <div class="container ">
     <h1 class="col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de topos</h1>
 
-    <form action="#" method="post" th:action="@{/createtopoform}" th:object="${topoForm}" enctype="multipart/form-data">
+    <form action="#" method="post" th:action="@{/createtopoform}" th:object="${siteForm}" enctype="multipart/form-data">
         <div class="alert alert-danger  col-md-7 offset-md-3 mt-3" role="alert" th:if="${error}" th:text="${error}"></div>
         <div class="form-group">
             <div class="row ">
@@ -40,7 +40,7 @@
                 <div class="form-group col-md-7 offset-md-3 mb-5">
                     <label for="exampleFormControlInput1" >Titre du Topo</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"
-                           placeholder="la ville du topo" th:field="*{title}">
+                           placeholder="la ville du topo" th:field="*{siteName}">
                 </div>
             </div>
             <div class="row ">

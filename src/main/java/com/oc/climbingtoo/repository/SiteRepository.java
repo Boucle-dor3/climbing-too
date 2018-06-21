@@ -13,5 +13,6 @@ public interface SiteRepository extends Repository<Site, Integer> {
     Site save (Site entity);
     List<Site> findAll ();
 
+    Site findById (int idSite);
 
 }
