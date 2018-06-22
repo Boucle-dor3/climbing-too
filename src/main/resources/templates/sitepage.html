@@ -7,109 +7,12 @@
 </head>
 
 <body>
-<div class="row">
-    <p class="h1 col-md-6 offset-md-5 mt-3 mb-3" th:text="${site.getSiteName()}"></p>
-</div>
 
-<img src="/images/falaise-escalade.jpg" class="img-fluid col-md-5 offset-md-3 mt-3 mb-5" alt="Responsive image">
+<div th:insert="~{fragments :: menu-navigation}"></div>
 
-<table class="table ">
-    <thead>
+<div th:insert="~{fragments :: site-page}"></div>
 
-    <tr>
-        <th scope="row"></th>
-        <th>Type </th>
-        <th>Hauteur </th>
-        <th>Orientation </th>
-        <th>Nombre de voies </th>
-        <th>Cotations </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row"></th>
-        <td>falaise</td>
-        <td>80 m</td>
-        <td>Sud-est</td>
-        <td>400 voies</td>
-        <td>De 4b à 8b - 6b</td>
-    </tr>
-    </tbody>
-</table>
-
-<div class="col-md-10 offset-md-1 mt-5 mb-5">
-<div>
-<h2 th:text="${site.getSiteName()}"></h2>
-<p th:text="${site.getDescription()}">
-</p>
-</div>
-
-<div>
-    <h2>Rocher & Escalade</h2>
-    <p>La falaise appartient à un vallon de calcaire urgonien, parvenu jusqu’à nous sous forme de murs verticaux ou légèrement déversants, compacts et finement ciselés d’une multitude de cannelures et de picots, qui sont d’ailleurs la marque de fabrique d’Ablon. Quasiment aucun voie n’y échappe, et vos doigts s’en souviendront. Le style dominant reste les voies de continuité, et vous trouverez quelques grandes longueurs avec des prises à profusion, mais pas toutes dans le bon sens ce qui complique la lecture. Plus de 230 voies, du 4b au 8b. Pour les grimpeurs de niveau 5+ à 6b, ce sont dans les secteurs "Ligne du temps" et "Résistance et liberté" les plus adaptés. Corde de 70 m suffisante. Quelques rares voies où une corde de 80 m est nécessaire. Voies assez bien équipées, prévoir un bon jeu de dégaines.
-        Best of "Ingrat Nadelgrat", LE 7a de la falaise, secteur "Terre Mythe".
-        "Picothérapie", deux longueurs en 6a, une des plus parcourues.
-        "La ligne du temps", 7b, la première voie difficile de la falaise.
-        "Dublabla", 7b puis 6b, grande longueur variée.</p>
-</div>
-
-<div>
-    <h2>Accès & Approche</h2>
-    <p>Se rendre à Thorens les Glières au Nord d’Annecy. Depuis Thorens, aller jusqu’au col des Glières.
-        Une fois au col, redescendre de trois cent mètres pour prendre une route sur la droite, le chemin du Collet.
-        Continuer jusqu’en bas de la descente et au niveau de la ferme, prendre à nouveau à droite.
-        Suivre le chemin des Eaux-Noires jusqu’au parking. Un sentier part sur la droite dans la forêt au niveau de la barrière.
-        Attention, il est strictement interdit d’utiliser votre véhicule au-delà de cette barrière. Continuer à pied.
-        Prévoir 40 mn de marche, juste de quoi s’imprégner de l’ambiance en mouillant un peu le tee-shirt.
-        Quand y aller? Période idéale : mai à novembre. En général, la neige sonne le début et la fin de la période de grimpe.
-        En été, il est possible de grimper sur certaines voies à l’ombre des arbres. Sinon, le soleil arrive tôt et la falaise passe à l’ombre vers 15 h.
-        Il peut même faire frais en fin de journée. Attention aux orages de montagne pouvant être très violents dans ce secteur.</p>
-</div>
-
-</div>
-
-<div class="media">
-    <img class="align-self-start  col-md-1 offset-md-1 mt-3 mb-5" src="/images/falaise-escalade.jpg" alt="Generic placeholder image">
-    <div class="media-body">
-        <h5 class="mt-4">Topos</h5>
-        <p>40 Falaises - Escalade choisie aux environs du lac d’Annecy - R. Durieux, 2007.</p>
-    </div>
-</div>
-
-<div class="col-md-10 offset-md-1 mt-5 mb-5">
-    <h2>Hébergement & Ravitaillement </h2>
-    <p>Sur le plateau des Glières : <br>
-
-        Restaurant gîte Les Lanfian’nes - chez Chantal
-        Bar, restaurant, gîte, et grande terrasse. 04.50.22.45.65 - <a href="www.lanfiannes-gite-glieres.fr">www.lanfiannes-gite-glieres.fr.</a>
-        <br>
-        Restaurant Gautard (Nathalie et Jean-Claude)
-        Terrasse ensoleillée avec vue sur les montagnes pour une cuisine chaleureuse et familiale - 04.50.24.40.71 - <a
-                href="www.restaurant-gautard-thorens-glieres.fr">www.restaurant-gautard-thorens-glieres.fr.</a>
-        <br>
-        Restaurant Chez Constance.
-        Restaurant-terrasse et spécialités savoyardes, ambiance refuge de montagne pour le gîte - 04.50.22.45.61 - <a
-                href="www.les-glieres.fr">www.les-glieres.fr.</a> </p>
-
-</div>
-
-<div class="container">
-<form action="">
-    <h4 class="m-5">Laissez un commentaire</h4>
-    <div class="row">
-        <div class="col-md-1">
-            <img src="/images/user1.png" class="img-fluid" alt="...">
-        </div>
-        <div class="form-group col-md-9 ">
-            <textarea class="form-control" placeholder="Ajoutez un commentaire"></textarea>
-        </div>
-    </div>
-<div class="row">
-    <button type="button" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Envoyer</button>
-</div>
-
-</form>
-</div>
+<div th:insert="~{fragments :: comments}"></div>
 
 </body>
 </html>
