@@ -1,15 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="fr">
-<head>
-    <title>Climbing Too</title>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-            crossorigin="anonymous"></script>
+
+<head th:insert="~{fragments :: head}">
 </head>
 
 
@@ -56,29 +48,7 @@
 
 </nav>
 
-
-<h1 class=" col-md-7 offset-md-4 mt-3 mb-5">Liste des Topos</h1>
-
-
-<div class="container">
-    <div class="d-flex flex-wrap  text-center">
-        <div class="col-sm-4 mb-4" th:each="site : ${sites}">
-            <div class="card">
-                <img class="card-img-top" th:src="${'files/'+site.getPicture()}" th:if="${site.getPicture() != null}" alt="Card image cap">
-                <img class="card-img-top" src="/images/falaise-escalade.jpg" th:if="${site.getPicture() == null}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${site.getSiteName()}"></h5>
-                    <p th:text="${site.getType()}"></p>
-                    <p class="card-text" th:text="${site.getDescription()}"></p>
-                    <a href="/sitepage" class="btn btn-dark" >En savoir plus</a>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div th:insert="~{fragments :: site-list}"></div>
 
 </body>
 </html>
