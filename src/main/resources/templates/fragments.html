@@ -140,24 +140,12 @@
 
         <div>
             <h2>Rocher & Escalade</h2>
-            <p>La falaise appartient à un vallon de calcaire urgonien, parvenu jusqu’à nous sous forme de murs verticaux ou légèrement déversants, compacts et finement ciselés d’une multitude de cannelures et de picots, qui sont d’ailleurs la marque de fabrique d’Ablon. Quasiment aucun voie n’y échappe, et vos doigts s’en souviendront. Le style dominant reste les voies de continuité, et vous trouverez quelques grandes longueurs avec des prises à profusion, mais pas toutes dans le bon sens ce qui complique la lecture. Plus de 230 voies, du 4b au 8b. Pour les grimpeurs de niveau 5+ à 6b, ce sont dans les secteurs "Ligne du temps" et "Résistance et liberté" les plus adaptés. Corde de 70 m suffisante. Quelques rares voies où une corde de 80 m est nécessaire. Voies assez bien équipées, prévoir un bon jeu de dégaines.
-                Best of "Ingrat Nadelgrat", LE 7a de la falaise, secteur "Terre Mythe".
-                "Picothérapie", deux longueurs en 6a, une des plus parcourues.
-                "La ligne du temps", 7b, la première voie difficile de la falaise.
-                "Dublabla", 7b puis 6b, grande longueur variée.</p>
+            <p th:text="${site.getRockClimbing()}"></p>
         </div>
 
         <div>
             <h2>Accès & Approche</h2>
-            <p>Se rendre à Thorens les Glières au Nord d’Annecy. Depuis Thorens, aller jusqu’au col des Glières.
-                Une fois au col, redescendre de trois cent mètres pour prendre une route sur la droite, le chemin du Collet.
-                Continuer jusqu’en bas de la descente et au niveau de la ferme, prendre à nouveau à droite.
-                Suivre le chemin des Eaux-Noires jusqu’au parking. Un sentier part sur la droite dans la forêt au niveau de la barrière.
-                Attention, il est strictement interdit d’utiliser votre véhicule au-delà de cette barrière. Continuer à pied.
-                Prévoir 40 mn de marche, juste de quoi s’imprégner de l’ambiance en mouillant un peu le tee-shirt.
-                Quand y aller? Période idéale : mai à novembre. En général, la neige sonne le début et la fin de la période de grimpe.
-                En été, il est possible de grimper sur certaines voies à l’ombre des arbres. Sinon, le soleil arrive tôt et la falaise passe à l’ombre vers 15 h.
-                Il peut même faire frais en fin de journée. Attention aux orages de montagne pouvant être très violents dans ce secteur.</p>
+            <p th:text="${site.getAccessApproach()}"></p>
         </div>
 
     </div>
@@ -172,23 +160,12 @@
 
     <div class="col-md-10 offset-md-1 mt-5 mb-5">
         <h2>Hébergement & Ravitaillement </h2>
-        <p>Sur le plateau des Glières : <br>
-
-            Restaurant gîte Les Lanfian’nes - chez Chantal
-            Bar, restaurant, gîte, et grande terrasse. 04.50.22.45.65 - <a href="www.lanfiannes-gite-glieres.fr">www.lanfiannes-gite-glieres.fr.</a>
-            <br>
-            Restaurant Gautard (Nathalie et Jean-Claude)
-            Terrasse ensoleillée avec vue sur les montagnes pour une cuisine chaleureuse et familiale - 04.50.24.40.71 - <a
-                    href="www.restaurant-gautard-thorens-glieres.fr">www.restaurant-gautard-thorens-glieres.fr.</a>
-            <br>
-            Restaurant Chez Constance.
-            Restaurant-terrasse et spécialités savoyardes, ambiance refuge de montagne pour le gîte - 04.50.22.45.61 - <a
-                    href="www.les-glieres.fr">www.les-glieres.fr.</a> </p>
+        <p th:text="${site.getHostingRefueling()}"></p>
 
     </div>
 </div>
 
-<!-- Formulaire pour laisser un commentaire-->
+<!-- Formulaire pour laisser un commentaire -->
 
 <div class="container" th:fragment="comments">
     <form action="">

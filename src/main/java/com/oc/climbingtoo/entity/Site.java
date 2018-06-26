@@ -36,6 +36,19 @@ public class Site {
     @Getter @Setter
     private String department;
 
+
+    @Column(columnDefinition="TEXT")
+    @Getter @Setter
+    private String rockClimbing;
+
+    @Column(columnDefinition="TEXT")
+    @Getter @Setter
+    private String accessApproach;
+
+    @Column(columnDefinition="TEXT")
+    @Getter @Setter
+    private String hostingRefueling;
+
     @Getter @Setter
     private Date createdAt;
 
