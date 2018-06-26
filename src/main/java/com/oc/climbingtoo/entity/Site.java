@@ -11,6 +11,7 @@ import java.util.Date;
 
 @Entity
 public class Site {
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Getter
