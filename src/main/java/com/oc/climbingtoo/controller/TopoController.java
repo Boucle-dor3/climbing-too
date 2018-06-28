@@ -4,7 +4,6 @@ import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

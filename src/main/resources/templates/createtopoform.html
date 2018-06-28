@@ -20,8 +20,8 @@
             </div>
             <div class="row ">
                 <select class="custom-select custom-select-sm col-md-3 offset-md-4 mb-5" name="type" >
-                    <option th:selected="selected" disabled value="">Liste des topos</option>
-                    <option th:each="type : ${T(com.oc.climbingtoo.enumeration.TopoType).values()}"
+                    <option th:selected="selected" disabled value="">Type</option>
+                    <option th:each="type : ${T(com.oc.climbingtoo.enumeration.SiteType).values()}"
                             th:value="${type}"
                             th:text="${type}"></option>
                 </select>
