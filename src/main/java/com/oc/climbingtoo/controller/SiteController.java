@@ -43,24 +43,24 @@ public class SiteController {
     }
 
 
-    @GetMapping("/createtopoform")
-    public String createTopoForm(Model model, @RequestParam(value="error", required=false) String error) {
+    @GetMapping("/createsiteform")
+    public String createSiteForm(Model model, @RequestParam(value="error", required=false) String error) {
         if ("invalid-extension".equals(error)) {
             model.addAttribute("error", "L'extension est invalide.");
         }
-        model.addAttribute("topoForm", new SiteForm());
-        return "createtopoform";
+        model.addAttribute("siteForm", new SiteForm());
+        return "createsiteform";
     }
 
-    @PostMapping("/createtopoform")
-    public String topoSubmit(@ModelAttribute SiteForm siteForm, @RequestParam("file") MultipartFile file) {
+    @PostMapping("/createsiteform")
+    public String siteSubmit(@ModelAttribute SiteForm siteForm, @RequestParam("file") MultipartFile file) {
         Site site = siteForm.toSite();
         try {
             site.setPicture(storageService.store(file));
         } catch (IOException e) {
             throw new RuntimeException("Cannot import image");
         } catch (InvalidFileExtensionException e) {
-            return "redirect:/createtopoform?error=invalid-extension";
+            return "redirect:/createsiteform?error=invalid-extension";
         }
         siteRepository.save(site);
         return "redirect:/";
