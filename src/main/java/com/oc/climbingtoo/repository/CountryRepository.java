@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CountryRepository extends Repository<Site, Integer> {
 
-    Site save (Site entity);
+    Country save (Country entity);
     List<Country> findAll ();
 
     Site findById (int idCountry);

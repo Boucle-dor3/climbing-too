@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.controller.form;
+package com.oc.climbingtoo.controller.dto;
 
 import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.enumeration.SiteType;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-public class SiteForm {
+public class SiteDTO {
 
     @Getter @Setter
     private String siteName;

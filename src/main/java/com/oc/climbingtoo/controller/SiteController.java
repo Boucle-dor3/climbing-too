@@ -1,10 +1,10 @@
 package com.oc.climbingtoo.controller;
 
 
-import com.oc.climbingtoo.controller.form.SiteForm;
+import com.oc.climbingtoo.controller.dto.SiteDTO;
 import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.exception.InvalidFileExtensionException;
-import com.oc.climbingtoo.repository.SiteRepository;
+import com.oc.climbingtoo.service.SiteService;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -29,7 +29,7 @@ public class SiteController {
     private StorageService storageService;
 
     @Autowired
-    private SiteRepository siteRepository;
+    private SiteService siteService;
 
     public SiteController(StorageService storageService) {
         this.storageService = storageService;
@@ -37,7 +37,7 @@ public class SiteController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        List<Site> site = siteRepository.findAll();
+        List<Site> site = siteService.getAll();
         model.addAttribute("sites", site)   ;
         return "home";
     }
@@ -48,13 +48,13 @@ public class SiteController {
         if ("invalid-extension".equals(error)) {
             model.addAttribute("error", "L'extension est invalide.");
         }
-        model.addAttribute("siteForm", new SiteForm());
+        model.addAttribute("siteForm", new SiteDTO());
         return "createsiteform";
     }
 
     @PostMapping("/createsiteform")
-    public String siteSubmit(@ModelAttribute SiteForm siteForm, @RequestParam("file") MultipartFile file) {
-        Site site = siteForm.toSite();
+    public String siteSubmit(@ModelAttribute SiteDTO siteDTO, @RequestParam("file") MultipartFile file) {
+        Site site = siteDTO.toSite();
         try {
             site.setPicture(storageService.store(file));
         } catch (IOException e) {
@@ -62,7 +62,7 @@ public class SiteController {
         } catch (InvalidFileExtensionException e) {
             return "redirect:/createsiteform?error=invalid-extension";
         }
-        siteRepository.save(site);
+        siteService.create(site);
         return "redirect:/";
     }
 
@@ -89,12 +89,12 @@ public class SiteController {
                 "Restaurant gîte Les Lanfian’nes - chez Chantal Bar, restaurant, gîte, et grande terrasse. 04.50.22.45.65 - www.lanfiannes-gite-glieres.fr. \n" +
                 "Restaurant Gautard (Nathalie et Jean-Claude) Terrasse ensoleillée avec vue sur les montagnes pour une cuisine chaleureuse et familiale - 04.50.24.40.71 - www.restaurant-gautard-thorens-glieres.fr. \n" +
                 "Restaurant Chez Constance. Restaurant-terrasse et spécialités savoyardes, ambiance refuge de montagne pour le gîte - 04.50.22.45.61 - www.les-glieres.fr.");
-        siteRepository.save(site);
+        siteService.create(site);
     }
 
     @GetMapping("/sitepage/{idSite}")
     public String sitePage (@PathVariable("idSite") int idSite, Model model) {
-        Site site = siteRepository.findById(idSite);
+        Site site = siteService.get(idSite);
         model.addAttribute("site", site);
         return "sitepage";
     }

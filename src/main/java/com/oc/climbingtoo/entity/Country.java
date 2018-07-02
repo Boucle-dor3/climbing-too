@@ -19,4 +19,10 @@ public class Country {
 
     @Getter @Setter
     private String countryName;
+
+    public Country (Integer id, String countryName) {
+        super();
+        this.id = id;
+        this.countryName = countryName;
+    }
 }
