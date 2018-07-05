@@ -48,7 +48,7 @@ public class SiteController {
         if ("invalid-extension".equals(error)) {
             model.addAttribute("error", "L'extension est invalide.");
         }
-        model.addAttribute("siteForm", new SiteDTO());
+        model.addAttribute("siteDTO", new SiteDTO());
         return "createsiteform";
     }
 

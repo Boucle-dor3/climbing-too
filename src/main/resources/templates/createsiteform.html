@@ -7,9 +7,9 @@
 
 <body>
 <div class="container ">
-    <h1 class="col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de topos</h1>
+    <h1 class="col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de sites</h1>
 
-    <form action="#" method="post" th:action="@{/createtopoform}" th:object="${siteDTO}" enctype="multipart/form-data">
+    <form action="#" method="post" th:action="@{/createsiteform}" th:object="${siteDTO}" enctype="multipart/form-data">
         <div class="alert alert-danger  col-md-7 offset-md-3 mt-3" role="alert" th:if="${error}" th:text="${error}"></div>
         <div class="form-group">
             <div class="row ">
@@ -28,15 +28,62 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Titre du Topo</label>
+                    <label for="exampleFormControlInput1" >Titre du site</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"
-                           placeholder="la ville du topo" th:field="*{siteName}">
+                           placeholder="la ville du site" th:field="*{siteName}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlInput1" >Hauteur</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput2"
+                           placeholder="la hauteur du site" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlInput1" >Orientation du site</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput3"
+                           placeholder="ex : sud-ouest" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlInput1" >Nombre de voies</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput4"
+                           placeholder="ex : 400 voies" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlInput1" >Côtations</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput5"
+                           placeholder="ex : de 4b à 8b - 6b ">
                 </div>
             </div>
             <div class="row ">
                 <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlTextarea1" >Description du topo</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{description}" rows="5"></textarea>
+                    <label for="exampleFormControlTextarea1" >Description du site</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{description}" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlTextarea1" >Rocher & Escalade</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea2" th:field="*{description}" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlTextarea1" >Accès et Approche</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea3" th:field="*{description}" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="form-group col-md-7 offset-md-3 mb-5">
+                    <label for="exampleFormControlTextarea1" >Hébergement & Ravitaillement</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea4" th:field="*{description}" rows="10"></textarea>
                 </div>
             </div>
             <div class="row">
