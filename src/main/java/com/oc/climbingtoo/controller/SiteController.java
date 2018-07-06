@@ -54,7 +54,7 @@ public class SiteController {
 
     @PostMapping("/createsiteform")
     public String siteSubmit(@ModelAttribute SiteDTO siteDTO, @RequestParam("file") MultipartFile file) {
-        Site site = siteDTO.toSite();
+        Site site = siteDTO.toConvertSite();
         try {
             site.setPicture(storageService.store(file));
         } catch (IOException e) {
