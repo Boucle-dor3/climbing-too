@@ -7,12 +7,12 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
-
+@org.springframework.stereotype.Repository
 public interface SiteRepository extends Repository<Site, Integer> {
 
     Site save (Site entity);
     List<Site> findAll ();
 
-    Site findById (int idSite);
-
+    Site findById (Integer idSite);
+    Boolean existsById (Integer idSite);
 }

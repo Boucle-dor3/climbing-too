@@ -6,6 +6,7 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
+@org.springframework.stereotype.Repository
 public interface CountryRepository extends Repository<Site, Integer> {
 
     Country save (Country entity);

@@ -5,6 +5,7 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
+@org.springframework.stereotype.Repository
 public interface TopoRepository extends Repository<Topo, Integer> {
 
     Topo save (Topo entity);

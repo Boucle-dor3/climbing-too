@@ -2,11 +2,9 @@ package com.oc.climbingtoo.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -16,6 +14,13 @@ public class Comment {
     @Getter
     private Integer id;
 
+    @Column(columnDefinition="TEXT")
     @Getter @Setter
     private String message;
+
+    @ManyToOne
+    @JoinColumn(name= "fk_site_id")
+    @Getter @Setter
+    private Site site;
+
 }

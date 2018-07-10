@@ -1,9 +1,11 @@
 package com.oc.climbingtoo.controller;
 
 
+import com.oc.climbingtoo.controller.dto.CommentDTO;
 import com.oc.climbingtoo.controller.dto.SiteDTO;
 import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.exception.InvalidFileExtensionException;
+import com.oc.climbingtoo.exception.ResourceNotFoundException;
 import com.oc.climbingtoo.service.SiteService;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,10 +97,11 @@ public class SiteController {
     @GetMapping("/sitepage/{idSite}")
     public String sitePage (@PathVariable("idSite") int idSite, Model model) {
         Site site = siteService.get(idSite);
+        CommentDTO commentDTO = new CommentDTO();
         model.addAttribute("site", site);
+        model.addAttribute("commentDTO", commentDTO);
         return "sitepage";
     }
-
 
 
 }

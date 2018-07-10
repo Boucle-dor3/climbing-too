@@ -26,4 +26,11 @@ public class SiteService {
         return siteRepository.save(site);
     }
 
+    public Site delete(Site site) {
+        return siteRepository.save(site);
+    }
+
+    public Site findById(Integer idSite) {
+        return siteRepository.findById(idSite);
+    }
 }
