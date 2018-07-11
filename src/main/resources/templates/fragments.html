@@ -195,12 +195,12 @@
 <!-- 5. Visualisation d'un commentaire -->
 
 <div class="container" th:fragment="comments-seen">
-    <div class="row">
+    <div class="row" th:each="comment : ${comments}">
     <div class="col-md-1">
         <img src="/images/user1.png" class="img-fluid" alt="...">
     </div>
     <div class="col-md-9">
-    <p>J'adore ce site!</p>
+    <p th:text="${comment.getMessage()}"></p>
     </div>
     </div>
 
