@@ -17,11 +17,20 @@
 
 <body>
 
+<!-- SOMMAIRE
+
+    1. Menu de navigation
+    2. Page d'accueil , liste des Sites
+    3. Page d'une présentation d'un site
+    4. Formulaire pour laisser un commentaire
+    5. Visualisation d'un commentaire
+    6. Liste des topos
+    7. Advanced-search
+ -->
 
 
 
-
-<!-- Menu de navigation -->
+<!-- 1. Menu de navigation -->
 
 
 <div th:fragment="menu-navigation">
@@ -63,7 +72,7 @@
 
 
 
-<!-- Page d'accueil , liste des Sites -->
+<!-- 2. Page d'accueil , liste des Sites -->
 
 <div th:fragment="site-list">
 
@@ -91,7 +100,7 @@
 
 
 
-<!-- Page d'une présentation d'un site -->
+<!-- 3. Page d'une présentation d'un site -->
 
 
 <div th:fragment="site-page">
@@ -162,7 +171,7 @@
 </div>
 
 
-<!-- Formulaire pour laisser un commentaire -->
+<!-- 4. Formulaire pour laisser un commentaire -->
 
 <div class="container" th:fragment="comments">
     <form action="#" method="post" th:action="@{/sitepage/} + ${site.getId()} +@{/comments}" th:object="${commentDTO}">
@@ -183,7 +192,22 @@
 </div>
 
 
-<!-- Liste des topos -->
+<!-- 5. Visualisation d'un commentaire -->
+
+<div class="container" th:fragment="comments-seen">
+    <div class="row">
+    <div class="col-md-1">
+        <img src="/images/user1.png" class="img-fluid" alt="...">
+    </div>
+    <div class="col-md-9">
+    <p>J'adore ce site!</p>
+    </div>
+    </div>
+
+</div>
+
+
+<!-- 6. Liste des topos -->
 
 <div th:fragment="topo-list">
 
@@ -217,7 +241,7 @@
 </div>
 
 
-<!-- Advanced-search -->
+<!-- 7. Advanced-search -->
 
 
 <form action="#" th:fragment="advanced-search">
