@@ -27,6 +27,10 @@ public class CommentController {
             throw new ResourceNotFoundException("idSite " + idSite + " not found");
         }
 
+        if (commentDTO.getMessage() == null || commentDTO.getMessage().isEmpty()) {
+            return "redirect:/sitepage/"+ idSite;
+        }
+
         Comment comment = new Comment();
         comment.setMessage(commentDTO.getMessage());
         comment.setSite(siteRepository.findById(idSite));

@@ -1,6 +1,7 @@
 package com.oc.climbingtoo;
 
 
+import com.github.bufferings.thymeleaf.extras.nl2br.dialect.Nl2brDialect;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.context.annotation.Bean;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.dialect.SpringStandardDialect;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
@@ -46,6 +49,14 @@ public class ClimbingtooApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		storageService.deleteAll();
 		storageService.init();
+	}
+
+	@Bean
+	public SpringTemplateEngine templateEngine() {
+		final SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+		springTemplateEngine.addTemplateResolver(this.defaultTemplateResolver());
+		springTemplateEngine.addDialect(new Nl2brDialect());
+		return springTemplateEngine;
 	}
 
 }

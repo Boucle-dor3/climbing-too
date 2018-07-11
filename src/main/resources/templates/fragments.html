@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:nl2br="https://github.com/bufferings/thymeleaf-extras-nl2br">
 
 <head th:fragment="head">
         <meta charset="UTF-8">
@@ -13,6 +14,7 @@
               crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
                 crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
@@ -195,12 +197,12 @@
 <!-- 5. Visualisation d'un commentaire -->
 
 <div class="container" th:fragment="comments-seen">
-    <div class="row" th:each="comment : ${comments}">
+    <div class="row mb-3" th:each="comment : ${comments}">
     <div class="col-md-1">
         <img src="/images/user1.png" class="img-fluid" alt="...">
     </div>
-    <div class="col-md-9">
-    <p th:text="${comment.getMessage()}"></p>
+    <div class="col-md-9 m-3 d-inline-block bg-light rounded restrict-line">
+    <p nl2br:text="${comment.getMessage()}">
     </div>
     </div>
 
