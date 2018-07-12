@@ -15,6 +15,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body>
@@ -196,17 +197,22 @@
 
 <!-- 5. Visualisation d'un commentaire -->
 
-<div class="container" th:fragment="comments-seen">
-    <div class="row mb-3" th:each="comment : ${comments}">
-    <div class="col-md-1">
-        <img src="/images/user1.png" class="img-fluid" alt="...">
-    </div>
-    <div class="col-md-9 m-3 d-inline-block bg-light rounded restrict-line">
-    <p nl2br:text="${comment.getMessage()}">
-    </div>
-    </div>
+    <div class="container" th:fragment="comments-seen">
+        <div class="row mb-3" th:each="comment : ${comments}">
+            <div class="col-md-1">
+                <img src="/images/user1.png" class="img-fluid" alt="...">
+            </div>
+            <div class="col-md-9 m-3 d-inline-block bg-light rounded restrict-line">
+                <p nl2br:text="${comment.getMessage()}"></p>
+            </div>
 
-</div>
+            <div class="row">
+                <form method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()} + @{/remove}">
+                    <button class="btn btn-link m-3" type="submit"><i class="far fa-trash-alt m-2"></i>Supprimer</button>
+                </form>
+            </div>
+         </div>
+    </div>
 
 
 <!-- 6. Liste des topos -->

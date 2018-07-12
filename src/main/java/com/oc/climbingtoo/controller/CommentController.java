@@ -27,12 +27,12 @@ public class CommentController {
             throw new ResourceNotFoundException("idSite " + idSite + " not found");
         }
 
-        if (commentDTO.getMessage() == null || commentDTO.getMessage().isEmpty()) {
+        if (commentDTO.getMessage() == null || commentDTO.getMessage().trim().isEmpty()) {
             return "redirect:/sitepage/"+ idSite;
         }
 
         Comment comment = new Comment();
-        comment.setMessage(commentDTO.getMessage());
+        comment.setMessage(commentDTO.getMessage().trim());
         comment.setSite(siteRepository.findById(idSite));
         commentRepository.save(comment);
 
@@ -40,7 +40,7 @@ public class CommentController {
     }
 
 
-    @DeleteMapping("/sitepage/{idSite}/comments/{idComment}")
+    @PostMapping("/sitepage/{idSite}/comments/{idComment}/remove")
     public String deleteComment(@PathVariable Integer idSite,
                                 @PathVariable Integer idComment) {
         if (!siteRepository.existsById(idSite)) {
