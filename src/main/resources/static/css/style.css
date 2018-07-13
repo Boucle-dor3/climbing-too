@@ -1,3 +1,7 @@
 .restrict-line {
 word-wrap: break-word;
 }
+
+.answer-form-js {
+    display: none;
+}

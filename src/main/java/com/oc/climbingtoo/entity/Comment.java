@@ -23,4 +23,9 @@ public class Comment {
     @Getter @Setter
     private Site site;
 
+    @ManyToOne
+    @JoinColumn(name= "fk_comment_id_parent")
+    @Getter @Setter
+    private Comment parent;
+
 }

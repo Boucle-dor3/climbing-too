@@ -106,7 +106,6 @@ public class SiteController {
         model.addAttribute("site", site);
         model.addAttribute("commentDTO", commentDTO);
         model.addAttribute("comments", comments);
-
         return "sitepage";
     }
 

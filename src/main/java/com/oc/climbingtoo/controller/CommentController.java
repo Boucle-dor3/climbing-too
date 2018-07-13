@@ -53,4 +53,28 @@ public class CommentController {
 
         return "redirect:/sitepage/" + idSite;
     }
+
+    @PostMapping("/sitepage/{idSite}/comments/{idParent}/answer")
+    public String answerComment (@PathVariable Integer idSite,
+                                 @ModelAttribute CommentDTO commentDTO,
+                                 @PathVariable Integer idParent) {
+        if (!siteRepository.existsById(idSite)) {
+            throw new ResourceNotFoundException("idSite " + idSite + " not found");
+        }
+
+        if (commentDTO.getMessage() == null || commentDTO.getMessage().trim().isEmpty()) {
+            return "redirect:/sitepage/"+ idSite;
+        }
+        if (!commentRepository.existsById(idParent)) {
+            throw new ResourceNotFoundException("idComment " + idParent + " not found");
+        }
+
+        Comment comment = new Comment();
+        comment.setMessage(commentDTO.getMessage().trim());
+        comment.setSite(siteRepository.findById(idSite));
+        comment.setParent(commentRepository.findById(idParent));
+        commentRepository.save(comment);
+
+        return "redirect:/sitepage/" + idSite;
+    }
 }

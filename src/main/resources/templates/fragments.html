@@ -10,12 +10,13 @@
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
               crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body>
@@ -188,7 +189,7 @@
             </div>
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Envoyer</button>
+            <button type="submit" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Ajouter</button>
         </div>
 
     </form>
@@ -197,22 +198,45 @@
 
 <!-- 5. Visualisation d'un commentaire -->
 
-    <div class="container" th:fragment="comments-seen">
-        <div class="row mb-3" th:each="comment : ${comments}">
+    <div class="container mb-5" th:fragment="comments-seen">
+        <div class="row mb-5" th:each="comment : ${comments}">
             <div class="col-md-1">
                 <img src="/images/user1.png" class="img-fluid" alt="...">
             </div>
-            <div class="col-md-9 m-3 d-inline-block bg-light rounded restrict-line">
-                <p nl2br:text="${comment.getMessage()}"></p>
+            <div class="col-md-9 row">
+                <p class="col-md-12 d-inline-block bg-light rounded restrict-line ml-3" nl2br:text="${comment.getMessage()}"></p>
             </div>
 
-            <div class="row">
+            <div class="col-md-2">
                 <form method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()} + @{/remove}">
-                    <button class="btn btn-link m-3" type="submit"><i class="far fa-trash-alt m-2"></i>Supprimer</button>
+                    <button class="btn btn-link ml-1" type="submit"><i class="far fa-trash-alt mr-2"></i>Supprimer</button>
+                </form>
+                <button class="btn btn-link answer-button-js" th:attr="data-comment-id=${comment.getId()}">
+                    <i class="fas fa-reply mr-2"></i>
+                    Répondre
+                </button>
+            </div>
+
+            <div class="container answer-form-js" th:attr="data-comment-id=${comment.getId()}">
+                <form action="#" method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()}+ @{/answer}" th:object="${commentDTO}">
+                    <h4 class="m-5">Réponse au commentaire</h4>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img src="/images/user1.png" class="img-fluid" alt="...">
+                        </div>
+                        <div class="form-group col-md-9 ">
+                            <textarea class="form-control" placeholder="Répondre au commentaire" th:field="*{message}"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Répondre</button>
+                    </div>
                 </form>
             </div>
-         </div>
+
+        </div>
     </div>
+
 
 
 <!-- 6. Liste des topos -->
