@@ -102,10 +102,10 @@ public class SiteController {
     public String sitePage (@PathVariable("idSite") int idSite, Model model) {
         Site site = siteService.get(idSite);
         CommentDTO commentDTO = new CommentDTO();
-        List<Comment> comments = commentRepository.findBySite_Id(idSite);
+        List<Comment> commentsParent = commentRepository.findParentsBySiteId(idSite);
         model.addAttribute("site", site);
         model.addAttribute("commentDTO", commentDTO);
-        model.addAttribute("comments", comments);
+        model.addAttribute("commentsParent", commentsParent);
         return "sitepage";
     }
 

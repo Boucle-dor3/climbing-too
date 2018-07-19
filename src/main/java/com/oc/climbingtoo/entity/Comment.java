@@ -5,6 +5,10 @@ import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -28,4 +32,7 @@ public class Comment {
     @Getter @Setter
     private Comment parent;
 
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+    @Getter
+    private List<Comment> children = new ArrayList<>();
 }

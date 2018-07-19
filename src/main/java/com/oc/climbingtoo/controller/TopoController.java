@@ -1,12 +1,15 @@
 package com.oc.climbingtoo.controller;
 
+import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
+import com.oc.climbingtoo.service.TopoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
@@ -19,21 +22,20 @@ public class TopoController {
     private StorageService storageService;
 
     @Autowired
-    private TopoRepository topoRepository;
+    private TopoService topoService;
 
-    public TopoController(StorageService storageService) {
-        this.storageService = storageService;
+    @GetMapping("/topolist")
+    public String topoList(Model model) {
+        List<Topo> topos = topoService.getAll();
+        model.addAttribute("topos", topos)   ;
+        return "topolist";
     }
 
-
-
-    @GetMapping("/topopage")
-    public String topoPage(Model model) {
-        List<Topo> topo = topoRepository.findAll();
-        model.addAttribute("topos", topo)   ;
+    @GetMapping("/topopage/{idTopo}")
+    public String topoPage(@PathVariable("idTopo") int idTopo, Model model) {
+        Topo topo = topoService.get(idTopo);
+        model.addAttribute("topo", topo);
         return "topopage";
     }
-
-
 
 }

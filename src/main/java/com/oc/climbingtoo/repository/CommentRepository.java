@@ -1,7 +1,7 @@
 package com.oc.climbingtoo.repository;
 
 import com.oc.climbingtoo.entity.Comment;
-import com.oc.climbingtoo.entity.Site;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,10 +9,12 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends org.springframework.data.repository.Repository<Comment, Integer> {
     Comment save (Comment entity);
-    List<Comment> findAll();
 
     Comment findById (Integer idComment);
-    List<Comment> findBySite_Id(Integer id);
     void deleteById(Integer id);
     Boolean existsById(Integer id);
+
+    @Query("SELECT c FROM Comment c WHERE c.site.id = :idSite AND c.parent IS NULL ")
+    List<Comment> findParentsBySiteId(Integer idSite);
+
 }

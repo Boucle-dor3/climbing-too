@@ -12,4 +12,5 @@ public interface TopoRepository extends Repository<Topo, Integer> {
     List<Topo> findAll ();
 
     Topo findById (int idTopo);
+
 }

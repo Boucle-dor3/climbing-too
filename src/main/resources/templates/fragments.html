@@ -198,48 +198,67 @@
 
 <!-- 5. Visualisation d'un commentaire -->
 
-    <div class="container mb-5" th:fragment="comments-seen">
-        <div class="row mb-5" th:each="comment : ${comments}">
-            <div class="col-md-1">
-                <img src="/images/user1.png" class="img-fluid" alt="...">
-            </div>
-            <div class="col-md-9 row">
-                <p class="col-md-12 d-inline-block bg-light rounded restrict-line ml-3" nl2br:text="${comment.getMessage()}"></p>
-            </div>
+<div class="container mb-5" th:fragment="comments-seen">
+    <div class="row mb-5" th:each="commentParent : ${commentsParent}">
 
-            <div class="col-md-2">
-                <form method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()} + @{/remove}">
-                    <button class="btn btn-link ml-1" type="submit"><i class="far fa-trash-alt mr-2"></i>Supprimer</button>
-                </form>
-                <button class="btn btn-link answer-button-js" th:attr="data-comment-id=${comment.getId()}">
-                    <i class="fas fa-reply mr-2"></i>
-                    Répondre
-                </button>
-            </div>
+        <div th:replace="fragments :: commentSeen(comment=${commentParent}, depth=${0})" th:remove="tag"/>
+        <div th:replace="fragments :: displayChildrenComments(comment=${commentParent}, depth=${1})" th:remove="tag"/>
 
-            <div class="container answer-form-js" th:attr="data-comment-id=${comment.getId()}">
-                <form action="#" method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()}+ @{/answer}" th:object="${commentDTO}">
-                    <h4 class="m-5">Réponse au commentaire</h4>
-                    <div class="row">
-                        <div class="col-md-1">
-                            <img src="/images/user1.png" class="img-fluid" alt="...">
-                        </div>
-                        <div class="form-group col-md-9 ">
-                            <textarea class="form-control" placeholder="Répondre au commentaire" th:field="*{message}"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <button type="submit" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Répondre</button>
-                    </div>
-                </form>
-            </div>
+    </div>
+</div>
 
+
+<div th:fragment="displayChildrenComments (comment, depth)" th:remove="tag">
+    <div th:class="@{col-md-} + ${depth}"></div>
+    <div th:if="${not #lists.isEmpty(comment.children)}" th:class="@{col-md-} + ${12 - depth}">
+        <div th:each="childComment : ${comment.children}" class="row">
+            <div th:replace="fragments :: commentSeen(comment=${childComment}, depth=${depth})" th:remove="tag" />
+            <div th:replace="fragments :: displayChildrenComments(comment=${childComment}, depth=${depth+1})" th:remove="tag" />
         </div>
     </div>
+</div>
 
 
+<div class="col-md-12" th:fragment="commentSeen (comment, depth)">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="/images/user1.png" class="img-fluid" alt="...">
+        </div>
+        <div class="col-md-9 row">
+            <p class="col-md-12 d-inline-block bg-light rounded restrict-line ml-3" nl2br:text="${comment.getMessage()}"></p>
+        </div>
 
-<!-- 6. Liste des topos -->
+        <div class="col-md-2">
+            <form method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()} + @{/remove}">
+                <button class="btn btn-link ml-1" type="submit"><i class="far fa-trash-alt mr-2"></i>Supprimer</button>
+            </form>
+            <button class="btn btn-link answer-button-js" th:attr="data-comment-id=${comment.getId()}">
+                <i class="fas fa-reply mr-2"></i>
+                Répondre
+            </button>
+        </div>
+
+        <div class="container answer-form-js" th:attr="data-comment-id=${comment.getId()}">
+            <form action="#" method="POST" th:action="@{/sitepage/} + ${site.getId()} +@{/comments/} + ${comment.getId()}+ @{/answer}" th:object="${commentDTO}">
+                <h4 class="m-5">Réponse au commentaire</h4>
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/images/user1.png" class="img-fluid" alt="...">
+                    </div>
+                    <div class="form-group col-md-9 ">
+                        <textarea class="form-control" placeholder="Répondre au commentaire" th:field="*{message}"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-dark col-md-1 offset-md-8 mb-5 mt-3">Répondre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+     <!-- 6. Liste des topos -->
 
 <div th:fragment="topo-list">
 
@@ -252,12 +271,13 @@
                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                 <br>
                 <span class="badge badge-danger">Réservé</span>
+                <span class="badge badge-info">Disponible à partir du 3 Août</span>
             </div>
         </li>
         <li class="media my-4">
             <img class="col-md-1 offset-md-1 mb-5 ml-3" src="/images/falaise-escalade.jpg" alt="Generic placeholder image">
             <div class="media-body ml-4">
-                <h5 class="mb-1 ml-4">List-based media object</h5>
+                <h5 class="mb-1 ml-4">List-based media object <button type="button" class="btn btn-secondary col-1 offset-md-8">Réserver</button></h5>
                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
             </div>
         </li>
@@ -272,8 +292,29 @@
 
 </div>
 
+<!-- 7. Présentation des topos -->
 
-<!-- 7. Advanced-search -->
+<div th:fragment="topo-page">
+
+    <div class="media">
+        <img class="align-self-center col-md-3 mr-3" src="/images/falaise-escalade.jpg" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0">Center-aligned media</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        </div>
+        <p class="font-weight-bold">Auteur :</p> <p class="font-weight-normal"> Karine Giebel</p>
+        <p class="font-weight-bold">Editeur :</p> <p class="font-weight-normal"> Belfond</p>
+        <p class="font-weight-bold">Langue :</p><p class="font-weight-normal"> Français</p>
+        <p class="font-weight-bold">Année :</p> <p class="font-weight-normal"> 2017</p>
+    </div>
+
+</div>
+
+
+
+
+<!-- 8. Advanced-search -->
 
 
 <form action="#" th:fragment="advanced-search">
