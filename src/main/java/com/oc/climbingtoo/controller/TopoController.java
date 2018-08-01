@@ -1,8 +1,7 @@
 package com.oc.climbingtoo.controller;
 
-import com.oc.climbingtoo.entity.Site;
+
 import com.oc.climbingtoo.entity.Topo;
-import com.oc.climbingtoo.repository.TopoRepository;
 import com.oc.climbingtoo.service.StorageService;
 import com.oc.climbingtoo.service.TopoService;
 import org.springframework.beans.factory.annotation.Autowired;
