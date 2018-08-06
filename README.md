@@ -1,12 +1,12 @@
-#Climbing-too
+# Climbing-too
 
-###1. Project description 
+### 1. Project description 
 
 It's a project on climbing. It describes sites and climbing's topos. The users can to let reviews and also share their topos. They also can to borrow topos between them.
 
 
 
-###2. Project infrastructure
+### 2. Project infrastructure
 
 **Prod database :** H2  
 **Dev database :** PostgreSQL
