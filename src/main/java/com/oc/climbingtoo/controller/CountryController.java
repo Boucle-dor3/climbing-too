@@ -1,6 +1,6 @@
 package com.oc.climbingtoo.controller;
 
-import com.oc.climbingtoo.repository.CountryRepository;
+import com.oc.climbingtoo.DAO.CountryDAO;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,6 @@ public class CountryController {
     private StorageService storageService;
 
     @Autowired
-    private CountryRepository countryRepository;
+    private CountryDAO countryDAO;
 
 }

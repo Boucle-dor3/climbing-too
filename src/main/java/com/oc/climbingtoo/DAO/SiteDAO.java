@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.repository;
+package com.oc.climbingtoo.DAO;
 
 
 import com.oc.climbingtoo.entity.Site;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 @org.springframework.stereotype.Repository
-public interface SiteRepository extends Repository<Site, Integer> {
+public interface SiteDAO extends Repository<Site, Integer> {
 
     Site save (Site entity);
     List<Site> findAll ();

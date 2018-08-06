@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.repository;
+package com.oc.climbingtoo.DAO;
 
 import com.oc.climbingtoo.entity.Topo;
 import org.springframework.data.repository.Repository;
@@ -6,7 +6,7 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 @org.springframework.stereotype.Repository
-public interface TopoRepository extends Repository<Topo, Integer> {
+public interface TopoDAO extends Repository<Topo, Integer> {
 
     Topo save (Topo entity);
     List<Topo> findAll ();

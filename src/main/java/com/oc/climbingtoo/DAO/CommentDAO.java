@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.repository;
+package com.oc.climbingtoo.DAO;
 
 import com.oc.climbingtoo.entity.Comment;
 import org.springframework.data.jpa.repository.Query;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CommentRepository extends org.springframework.data.repository.Repository<Comment, Integer> {
+public interface CommentDAO extends org.springframework.data.repository.Repository<Comment, Integer> {
     Comment save (Comment entity);
 
     Comment findById (Integer idComment);

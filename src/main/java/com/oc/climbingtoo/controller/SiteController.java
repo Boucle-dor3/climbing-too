@@ -6,7 +6,7 @@ import com.oc.climbingtoo.controller.dto.SiteDTO;
 import com.oc.climbingtoo.entity.Comment;
 import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.exception.InvalidFileExtensionException;
-import com.oc.climbingtoo.repository.CommentRepository;
+import com.oc.climbingtoo.DAO.CommentDAO;
 import com.oc.climbingtoo.service.SiteService;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class SiteController {
     private SiteService siteService;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private CommentDAO commentDAO;
 
     public SiteController(StorageService storageService) {
         this.storageService = storageService;
@@ -102,7 +102,7 @@ public class SiteController {
     public String sitePage (@PathVariable("idSite") int idSite, Model model) {
         Site site = siteService.get(idSite);
         CommentDTO commentDTO = new CommentDTO();
-        List<Comment> commentsParent = commentRepository.findParentsBySiteId(idSite);
+        List<Comment> commentsParent = commentDAO.findParentsBySiteId(idSite);
         model.addAttribute("site", site);
         model.addAttribute("commentDTO", commentDTO);
         model.addAttribute("commentsParent", commentsParent);

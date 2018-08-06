@@ -2,7 +2,7 @@ package com.oc.climbingtoo.service;
 
 
 import com.oc.climbingtoo.entity.Site;
-import com.oc.climbingtoo.repository.SiteRepository;
+import com.oc.climbingtoo.DAO.SiteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +12,25 @@ import java.util.List;
 public class SiteService {
 
     @Autowired
-    private SiteRepository siteRepository;
+    private SiteDAO siteDAO;
 
     public List<Site> getAll() {
-     return siteRepository.findAll();
+     return siteDAO.findAll();
     }
 
     public Site get(Integer idSite) {
-        return siteRepository.findById(idSite);
+        return siteDAO.findById(idSite);
     }
 
     public Site create(Site site) {
-        return siteRepository.save(site);
+        return siteDAO.save(site);
     }
 
     public Site delete(Site site) {
-        return siteRepository.save(site);
+        return siteDAO.save(site);
     }
 
     public Site findById(Integer idSite) {
-        return siteRepository.findById(idSite);
+        return siteDAO.findById(idSite);
     }
 }

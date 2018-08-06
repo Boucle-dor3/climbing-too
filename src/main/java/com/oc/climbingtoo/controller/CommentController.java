@@ -3,8 +3,8 @@ package com.oc.climbingtoo.controller;
 import com.oc.climbingtoo.controller.dto.CommentDTO;
 import com.oc.climbingtoo.entity.Comment;
 import com.oc.climbingtoo.exception.ResourceNotFoundException;
-import com.oc.climbingtoo.repository.CommentRepository;
-import com.oc.climbingtoo.repository.SiteRepository;
+import com.oc.climbingtoo.DAO.CommentDAO;
+import com.oc.climbingtoo.DAO.SiteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     @Autowired
-    private CommentRepository commentRepository;
+    private CommentDAO commentDAO;
 
     @Autowired
-    private SiteRepository siteRepository;
+    private SiteDAO siteDAO;
 
 
     @PostMapping("/sitepage/{idSite}/comments")
     public String createComment(@PathVariable Integer idSite,
                                 @ModelAttribute CommentDTO commentDTO) {
-        if (!siteRepository.existsById(idSite)) {
+        if (!siteDAO.existsById(idSite)) {
             throw new ResourceNotFoundException("idSite " + idSite + " not found");
         }
 
@@ -33,8 +33,8 @@ public class CommentController {
 
         Comment comment = new Comment();
         comment.setMessage(commentDTO.getMessage().trim());
-        comment.setSite(siteRepository.findById(idSite));
-        commentRepository.save(comment);
+        comment.setSite(siteDAO.findById(idSite));
+        commentDAO.save(comment);
 
         return "redirect:/sitepage/"+ idSite;
     }
@@ -43,13 +43,13 @@ public class CommentController {
     @PostMapping("/sitepage/{idSite}/comments/{idComment}/remove")
     public String deleteComment(@PathVariable Integer idSite,
                                 @PathVariable Integer idComment) {
-        if (!siteRepository.existsById(idSite)) {
+        if (!siteDAO.existsById(idSite)) {
             throw new ResourceNotFoundException("idSite " + idSite + " not found");
         }
-        if (!commentRepository.existsById(idComment)) {
+        if (!commentDAO.existsById(idComment)) {
             throw new ResourceNotFoundException("idComment " + idComment + " not found");
         }
-        commentRepository.deleteById(idComment);
+        commentDAO.deleteById(idComment);
 
         return "redirect:/sitepage/" + idSite;
     }
@@ -58,22 +58,22 @@ public class CommentController {
     public String answerComment (@PathVariable Integer idSite,
                                  @ModelAttribute CommentDTO commentDTO,
                                  @PathVariable Integer idParent) {
-        if (!siteRepository.existsById(idSite)) {
+        if (!siteDAO.existsById(idSite)) {
             throw new ResourceNotFoundException("idSite " + idSite + " not found");
         }
 
         if (commentDTO.getMessage() == null || commentDTO.getMessage().trim().isEmpty()) {
             return "redirect:/sitepage/"+ idSite;
         }
-        if (!commentRepository.existsById(idParent)) {
+        if (!commentDAO.existsById(idParent)) {
             throw new ResourceNotFoundException("idComment " + idParent + " not found");
         }
 
         Comment comment = new Comment();
         comment.setMessage(commentDTO.getMessage().trim());
-        comment.setSite(siteRepository.findById(idSite));
-        comment.setParent(commentRepository.findById(idParent));
-        commentRepository.save(comment);
+        comment.setSite(siteDAO.findById(idSite));
+        comment.setParent(commentDAO.findById(idParent));
+        commentDAO.save(comment);
 
         return "redirect:/sitepage/" + idSite;
     }

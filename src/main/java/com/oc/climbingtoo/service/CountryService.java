@@ -1,7 +1,7 @@
 package com.oc.climbingtoo.service;
 
 
-import com.oc.climbingtoo.repository.CountryRepository;
+import com.oc.climbingtoo.DAO.CountryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class CountryService {
 
    @Autowired
-    private CountryRepository countryRepository;
+    private CountryDAO countryDAO;
 
 
 
