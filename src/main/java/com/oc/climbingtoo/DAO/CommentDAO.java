@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository 
 public interface CommentDAO extends org.springframework.data.repository.Repository<Comment, Integer> {
     Comment save (Comment entity);
 

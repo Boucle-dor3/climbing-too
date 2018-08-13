@@ -11,7 +11,7 @@ It's a project on climbing. It describes sites and climbing's topos. The users c
 **Prod database :** H2  
 **Dev database :** PostgreSQL
 
-The code is in Java 1.8
+The code is in Java 1.8 with maven.
 
 
 **The different libraries used :**
