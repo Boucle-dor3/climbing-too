@@ -10,14 +10,14 @@ import javax.persistence.Id;
 
 
 @Entity
+@Getter
+@Setter
 public class Country {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Getter
     private Integer id;
 
-    @Getter @Setter
     private String countryName;
 
     public Country (Integer id, String countryName) {

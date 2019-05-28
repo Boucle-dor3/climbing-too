@@ -2,25 +2,22 @@ package com.oc.climbingtoo.security;
 
 import com.oc.climbingtoo.entity.User;
 import com.oc.climbingtoo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+
 
 
 @Service
-public class SecurityServiceImpl implements UserDetailsService, SecurityService {
+@RequiredArgsConstructor
+public class SecurityServiceImpl  {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    // private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
 
     public User getCurrentUser() {
@@ -36,19 +33,19 @@ public class SecurityServiceImpl implements UserDetailsService, SecurityService 
         User user = userService.findByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, password, user.getRoleAsGrantedAuthorities());
 
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        // authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
     }
 
-    @Override
+   /* @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-    }
+    } */
 }
 
 

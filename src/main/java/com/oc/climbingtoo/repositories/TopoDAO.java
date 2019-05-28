@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.DAO;
+package com.oc.climbingtoo.repositories;
 
 import com.oc.climbingtoo.entity.Topo;
 import org.springframework.data.repository.Repository;

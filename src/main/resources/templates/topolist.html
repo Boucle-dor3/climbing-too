@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="fr">
 
-<head th:insert="~{fragment-head :: head}">
+<head th:insert="~{fragments/fragment-head :: head}">
 
 </head>
 
 <body>
 
 
-<div th:insert="~{fragment-menu :: menu-navigation}"></div>
+<div th:insert="~{fragments/fragment-menu :: menu-navigation}"></div>
 
 <h1 class="col-md-6 offset-md-5 mt-3 mb-3">Liste des topos </h1>
 
-<div th:insert="~{fragment-advanced-search :: advanced-search}"></div>
+<div th:insert="~{fragments/fragment-advanced-search :: advanced-search}"></div>
 
-<div th:insert="~{fragments :: topo-list}"></div>
+<div th:insert="~{fragments/fragments :: topo-list}"></div>
 
 </body>
 </html>

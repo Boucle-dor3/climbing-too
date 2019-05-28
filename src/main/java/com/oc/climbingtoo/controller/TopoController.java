@@ -4,6 +4,7 @@ package com.oc.climbingtoo.controller;
 import com.oc.climbingtoo.entity.Topo;
 import com.oc.climbingtoo.service.StorageService;
 import com.oc.climbingtoo.service.TopoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +16,12 @@ import java.util.List;
 
 
 @Controller
+@RequiredArgsConstructor
 public class TopoController {
 
-    @Autowired
-    private StorageService storageService;
+    private final StorageService storageService;
 
-    @Autowired
-    private TopoService topoService;
+    private final TopoService topoService;
 
     @GetMapping("/topolist")
     public String topoList(Model model) {

@@ -10,13 +10,13 @@ import javax.persistence.Id;
 
 
 @Entity
+@Getter
+@Setter
 public class Department {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Getter
     private Integer id;
 
-    @Getter @Setter
     private String departmentName;
 }

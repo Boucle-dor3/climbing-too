@@ -1,4 +1,4 @@
-package com.oc.climbingtoo.DAO;
+package com.oc.climbingtoo.repositories;
 
 import com.oc.climbingtoo.entity.Country;
 import com.oc.climbingtoo.entity.Site;

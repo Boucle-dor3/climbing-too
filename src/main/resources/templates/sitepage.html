@@ -3,19 +3,19 @@
 <html lang="fr">
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="~{fragment-head :: head}">
+<head th:insert="~{fragments/fragment-head :: head}">
 </head>
 
 <body>
 
-<div th:insert="~{fragment-menu :: menu-navigation}"></div>
+<div th:insert="~{fragments/fragment-menu :: menu-navigation}"></div>
 
 
-<div th:insert="~{fragments :: site-page}"></div>
+<div th:insert="~{fragments/fragments :: site-page}"></div>
 
-<div th:insert="~{fragments :: comments}"></div>
+<div th:insert="~{fragments/fragments :: comments}"></div>
 
-<div th:insert="~{fragments :: comments-seen}"></div>
+<div th:insert="~{fragments/fragments :: comments-seen}"></div>
 
 
 </body>

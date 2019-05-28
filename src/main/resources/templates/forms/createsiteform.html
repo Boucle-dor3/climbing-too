@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{fragment-head :: head}">
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/fragment-head :: head}" />
 
 <body>
-<div class="container ">
+<div class="container">
     <h1 class="col-md-7 offset-md-3 mt-3 mb-5">Formulaire de création de sites</h1>
 
     <form action="#" method="post" th:action="@{/createsiteform}" th:object="${siteDTO}" enctype="multipart/form-data">
@@ -18,28 +15,32 @@
                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
                 </div>
             </div>
-            <div class="row ">
-                <select class="custom-select custom-select-sm col-md-3 offset-md-4 mb-5" name="type" >
-                    <option th:selected="selected" disabled value="">Type</option>
-                    <option th:each="type : ${T(com.oc.climbingtoo.enumeration.SiteType).values()}"
-                            th:value="${type}"
-                            th:text="${type}"></option>
-                </select>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Titre du site</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                           placeholder="la ville du site" th:field="*{siteName}">
+            <div class="field-left">
+                <div class="row ">
+                    <select class="custom-select custom-select-sm col-md-3 offset-md-4 mb-5" name="type" >
+                        <option th:selected="selected" disabled value="">Type</option>
+                        <option th:each="type : ${T(com.oc.climbingtoo.enumeration.SiteType).values()}"
+                                th:value="${type}"
+                                th:text="${type}"></option>
+                    </select>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Hauteur</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2"
-                           placeholder="la hauteur du site" >
+                <div class="row">
+                    <div class="form-group col-md-7 offset-md-3 mb-5">
+                        <label for="exampleFormControlInput1" >Titre du site</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                               placeholder="la ville du site" th:field="*{siteName}">
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-md-7 offset-md-3 mb-5">
+                        <label for="exampleFormControlInput1" >Hauteur</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput2"
+                               placeholder="la hauteur du site" >
+                    </div>
+                </div>
+
             </div>
+
             <div class="row">
                 <div class="form-group col-md-7 offset-md-3 mb-5">
                     <label for="exampleFormControlInput1" >Orientation du site</label>

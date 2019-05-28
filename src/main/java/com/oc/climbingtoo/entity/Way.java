@@ -11,25 +11,21 @@ import java.util.Date;
 
 
 @Entity
+@Getter
+@Setter
 public class Way {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Getter
     private Integer id;
 
-    @Getter @Setter
     private Integer height;
 
-    @Getter @Setter
     private Integer spit;
 
-    @Getter @Setter
     private String climbingRating;
 
-    @Getter @Setter
     private Date createdAt;
 
-    @Getter @Setter
     private Date updatedAt;
 }

@@ -3,21 +3,22 @@ package com.oc.climbingtoo.controller;
 import com.oc.climbingtoo.controller.dto.CommentDTO;
 import com.oc.climbingtoo.entity.Comment;
 import com.oc.climbingtoo.exception.ResourceNotFoundException;
-import com.oc.climbingtoo.DAO.CommentDAO;
-import com.oc.climbingtoo.DAO.SiteDAO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.oc.climbingtoo.repositories.CommentDAO;
+import com.oc.climbingtoo.repositories.SiteDAO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@RequiredArgsConstructor
 public class CommentController {
 
-    @Autowired
-    private CommentDAO commentDAO;
 
-    @Autowired
-    private SiteDAO siteDAO;
+    private final CommentDAO commentDAO;
+
+
+    private final SiteDAO siteDAO;
 
 
     @PostMapping("/sitepage/{idSite}/comments")

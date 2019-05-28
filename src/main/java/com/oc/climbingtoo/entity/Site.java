@@ -10,50 +10,39 @@ import java.util.Date;
 
 
 @Entity
+@Getter
+@Setter
 public class Site {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Getter
     private Integer id;
 
-    @Getter @Setter
     private String siteName;
 
     @Column(name="DESC", columnDefinition="TEXT")
-    @Getter @Setter
     private String description;
 
-    @Getter @Setter
     private String picture;
 
     @Enumerated(EnumType.STRING)
-    @Getter @Setter
     private SiteType type;
 
-    @Getter @Setter
     private String region;
 
-    @Getter @Setter
     private String department;
 
-
     @Column(columnDefinition="TEXT")
-    @Getter @Setter
     private String rockClimbing;
 
     @Column(columnDefinition="TEXT")
-    @Getter @Setter
     private String accessApproach;
 
     @Column(columnDefinition="TEXT")
-    @Getter @Setter
     private String hostingRefueling;
 
-    @Getter @Setter
     private Date createdAt;
 
-    @Getter @Setter
     private Date updatedAt;
 
 }

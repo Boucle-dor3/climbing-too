@@ -6,7 +6,7 @@ import com.oc.climbingtoo.controller.dto.SiteDTO;
 import com.oc.climbingtoo.entity.Comment;
 import com.oc.climbingtoo.entity.Site;
 import com.oc.climbingtoo.exception.InvalidFileExtensionException;
-import com.oc.climbingtoo.DAO.CommentDAO;
+import com.oc.climbingtoo.repositories.CommentDAO;
 import com.oc.climbingtoo.service.SiteService;
 import com.oc.climbingtoo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class SiteController {
             model.addAttribute("error", "L'extension est invalide.");
         }
         model.addAttribute("siteDTO", new SiteDTO());
-        return "createsiteform";
+        return "forms/createsiteform";
     }
 
     @PostMapping("/createsiteform")

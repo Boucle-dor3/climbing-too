@@ -2,7 +2,7 @@ package com.oc.climbingtoo.service;
 
 
 import com.oc.climbingtoo.entity.Topo;
-import com.oc.climbingtoo.DAO.TopoDAO;
+import com.oc.climbingtoo.repositories.TopoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -10,16 +10,15 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class Sector {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Getter
     private Integer id;
 
-    @Getter @Setter
     private Date createdAt;
 
-    @Getter @Setter
     private Date updatedAt;
 }

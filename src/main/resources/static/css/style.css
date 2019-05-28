@@ -5,3 +5,8 @@ word-wrap: break-word;
 .answer-form-js {
     display: none;
 }
+
+.field-left {
+    display:inline-block;
+    width: 50%;
+}

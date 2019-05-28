@@ -1,17 +1,16 @@
 package com.oc.climbingtoo.controller;
 
-import com.oc.climbingtoo.DAO.CountryDAO;
+import com.oc.climbingtoo.repositories.CountryDAO;
 import com.oc.climbingtoo.service.StorageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 @Controller
+@RequiredArgsConstructor
 public class CountryController {
 
-    @Autowired
-    private StorageService storageService;
+    private final StorageService storageService;
 
-    @Autowired
-    private CountryDAO countryDAO;
+    private final CountryDAO countryDAO;
 
 }

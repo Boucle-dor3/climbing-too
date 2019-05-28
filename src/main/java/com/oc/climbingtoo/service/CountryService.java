@@ -1,7 +1,7 @@
 package com.oc.climbingtoo.service;
 
 
-import com.oc.climbingtoo.DAO.CountryDAO;
+import com.oc.climbingtoo.repositories.CountryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
