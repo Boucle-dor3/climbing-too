@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="field-left">
-                <div class="row ">
+                <div class="row col">
                     <select class="custom-select custom-select-sm col-md-3 offset-md-4 mb-5" name="type" >
                         <option th:selected="selected" disabled value="">Type</option>
                         <option th:each="type : ${T(com.oc.climbingtoo.enumeration.SiteType).values()}"
@@ -24,42 +24,42 @@
                                 th:text="${type}"></option>
                     </select>
                 </div>
-                <div class="row">
+                <div class="row col">
                     <div class="form-group col-md-7 offset-md-3 mb-5">
                         <label for="exampleFormControlInput1" >Titre du site</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1"
                                placeholder="la ville du site" th:field="*{siteName}">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row col">
                     <div class="form-group col-md-7 offset-md-3 mb-5">
                         <label for="exampleFormControlInput1" >Hauteur</label>
                         <input type="text" class="form-control" id="exampleFormControlInput2"
                                placeholder="la hauteur du site" >
                     </div>
                 </div>
-
             </div>
-
-            <div class="row">
-                <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Orientation du site</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput3"
-                           placeholder="ex : sud-ouest" >
+            <div class="field-center col-6">
+                <div class="row col">
+                    <div class="form-group col-md-7 offset-md-3 mb-5">
+                        <label for="exampleFormControlInput1" >Orientation du site</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3"
+                               placeholder="ex : sud-ouest" >
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Nombre de voies</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput4"
-                           placeholder="ex : 400 voies" >
+                <div class="row col">
+                    <div class="form-group col-md-7 offset-md-3 mb-5">
+                        <label for="exampleFormControlInput1" >Nombre de voies</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput4"
+                               placeholder="ex : 400 voies" >
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-7 offset-md-3 mb-5">
-                    <label for="exampleFormControlInput1" >Côtations</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput5"
-                           placeholder="ex : de 4b à 8b - 6b ">
+                <div class="row col">
+                    <div class="form-group col-md-7 offset-md-3 mb-5">
+                        <label for="exampleFormControlInput1" >Côtations</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput5"
+                               placeholder="ex : de 4b à 8b - 6b ">
+                    </div>
                 </div>
             </div>
             <div class="row ">
