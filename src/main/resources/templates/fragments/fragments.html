@@ -5,7 +5,7 @@
 
 <head th:fragment="head">
         <meta charset="UTF-8">
-        <title>Climbing Too</title>
+        <title>Les amis de l'escalade</title>
         <script
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -38,12 +38,11 @@
 
 <div th:fragment="site-list">
 
-
 <div class="container">
     <div class="d-flex flex-wrap  text-center">
         <div class="col-sm-4 mb-4" th:each="site : ${sites}">
             <div class="card">
-                <img class="card-img-top" th:src="${'files/'+site.getPicture()}" th:if="${site.getPicture() != null}" alt="Card image cap">
+                <img class="card-img-top" th:src="${'files/'+ site.getPicture()}" th:if="${site.getPicture() != null}" alt="Card image cap">
                 <img class="card-img-top" src="/images/falaise-escalade.jpg" th:if="${site.getPicture() == null}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${site.getSiteName()}"></h5>
@@ -126,7 +125,7 @@
     </div>
 
     <div class="col-md-10 offset-md-1 mt-5 mb-5">
-        <h2>Hébergement & Ravitaillement </h2>
+        <h2>Hébergement & Ravitaillement</h2>
         <p th:text="${site.getHostingRefueling()}"></p>
 
     </div>
@@ -158,26 +157,25 @@
 
 <div class="container mb-5" th:fragment="comments-seen">
     <div class="row mb-5" th:each="commentParent : ${commentsParent}">
-
-        <div th:replace="fragments :: commentSeen(comment=${commentParent}, depth=${0})" th:remove="tag"/>
-        <div th:replace="fragments :: displayChildrenComments(comment=${commentParent}, depth=${1})" th:remove="tag"/>
+        <div th:replace="fragments/fragments :: commentSeen(comment=${commentParent}, depth=${0})" th:remove="tag"/>
+        <div th:replace="fragments/fragments :: displayChildrenComments(comment=${commentParent}, depth=${1})" th:remove="tag"/>
 
     </div>
 </div>
 
 
-<div th:fragment="displayChildrenComments (comment, depth)" th:remove="tag">
+<div th:fragment="displayChildrenComments(comment, depth)" th:remove="tag">
     <div th:class="@{col-md-} + ${depth}"></div>
     <div th:if="${not #lists.isEmpty(comment.children)}" th:class="@{col-md-} + ${12 - depth}">
         <div th:each="childComment : ${comment.children}" class="row">
-            <div th:replace="fragments :: commentSeen(comment=${childComment}, depth=${depth})" th:remove="tag" />
-            <div th:replace="fragments :: displayChildrenComments(comment=${childComment}, depth=${depth+1})" th:remove="tag" />
+            <div th:replace="fragments/fragments :: commentSeen(comment=${childComment}, depth=${depth})" th:remove="tag" />
+            <div th:replace="fragments/fragments :: displayChildrenComments(comment=${childComment}, depth=${depth+1})" th:remove="tag" />
         </div>
     </div>
 </div>
 
 
-<div class="col-md-12" th:fragment="commentSeen (comment, depth)">
+<div class="col-md-12" th:fragment="commentSeen(comment, depth)">
     <div class="row">
         <div class="col-md-1">
             <img src="/images/user1.png" class="img-fluid" alt="...">
@@ -219,8 +217,6 @@
      <!-- 6. Liste des topos -->
 
 <div th:fragment="topo-list">
-
-
     <ul class="list-unstyled mt-5">
         <li class="media">
             <img class="col-md-1 offset-md-1 mb-5 ml-3" src="/images/falaise-escalade.jpg" alt="Generic placeholder image">
@@ -282,34 +278,33 @@
 
 <!-- 8. Advanced-search -->
 
-
 <form action="#" th:fragment="advanced-search">
     <div class="col-md-8 offset-md-3 mb-5 mt-5">
         <div class="row">
-            <div class="col-2 ">
-                <select class="custom-select custom-select-sm " name="Pays" >
+            <div class="col-2">
+                <select class="custom-select custom-select-sm " name="Pays">
                     <option th:selected="selected" disabled value="">Pays</option>
-                    <option ></option>
+                    <option></option>
                 </select>
             </div>
-            <div class="col-3 ">
-                <select class="custom-select custom-select-sm" name="département" >
+            <div class="col-3">
+                <select class="custom-select custom-select-sm" name="département">
                     <option th:selected="selected" disabled value="">Département</option>
-                    <option ></option>
+                    <option></option>
                 </select>
             </div>
             <div class="col-2">
-                <select class="custom-select custom-select-sm " name="type" >
+                <select class="custom-select custom-select-sm " name="type">
                     <option th:selected="selected" disabled value="">Type</option>
                     <option th:each="type : ${T(com.oc.climbingtoo.enumeration.SiteType).values()}"
                             th:value="${type}"
                             th:text="${type}"></option>
                 </select>
             </div>
-            <div class="col-2 ">
+            <div class="col-2">
                 <select class="custom-select custom-select-sm " name="site" >
                     <option th:selected="selected" disabled value="">Site</option>
-                    <option ></option>
+                    <option></option>
                 </select>
             </div>
 

@@ -30,7 +30,9 @@ public class Site {
 
     private String region;
 
-    private String department;
+    @ManyToOne
+    @JoinColumn(name= "fk_department_id")
+    private Department department;
 
     @Column(columnDefinition="TEXT")
     private String rockClimbing;

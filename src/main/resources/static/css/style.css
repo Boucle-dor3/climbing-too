@@ -10,3 +10,8 @@ word-wrap: break-word;
     display:inline-block;
     width: 50%;
 }
+
+.logo {
+    width: 91px;
+    margin:5px;
+}

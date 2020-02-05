@@ -2,15 +2,12 @@ package com.oc.climbingtoo.repositories;
 
 import com.oc.climbingtoo.entity.Country;
 import com.oc.climbingtoo.entity.Site;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-@org.springframework.stereotype.Repository
-public interface CountryDAO extends Repository<Site, Integer> {
+public interface CountryDAO extends CrudRepository<Country, Integer> {
 
-    Country save (Country entity);
-    List<Country> findAll ();
+    List<Country> findAll();
 
-    Site findById (int idCountry);
 }
